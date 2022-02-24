@@ -13,14 +13,17 @@ const { NotImplementedError } = require("../extensions/index.js");
  */
 function deleteDigit(n) {
   let arrNumber = [...n.toString()].map(e => Number.parseInt(e));
-  if (arrNumber.length == 3 && arrNumber[0] < arrNumber[1]) {
-    arrNumber.splice(0, 1);
-  } else {
-    for (i = 0; i < arrNumber.length; i++) {
-      if (arrNumber[i] === Math.min(...arrNumber)) {
-        arrNumber.splice(i, 1);
-        break;
-      }
+  let minNumber = Math.min(...arrNumber);
+  for (i = 0; i < arrNumber.length; i++) {
+    if (arrNumber[i] < arrNumber[i + 1]) {
+      arrNumber[i] = "";
+      break;
+    } else if (
+      (arrNumber[i] == arrNumber[i + 1] && arrNumber[i] == minNumber) ||
+      i == arrNumber.length - 1
+    ) {
+      arrNumber[i] = "";
+      break;
     }
   }
   return Number.parseInt(arrNumber.join(""));
