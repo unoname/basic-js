@@ -72,6 +72,69 @@ class VigenereCipheringMachine {
   }
 }
 
+// alternative variant
+// class VigenereCipheringMachine {
+//   constructor(value = true) {
+//     this.direct = value;
+//   }
+//   ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+//   encrypt(str, key) {
+//     if (!str || !key) {
+//       throw new Error("Incorrect arguments!");
+//     }
+//     let arr = [];
+//     let strUC = str.toUpperCase().split("");
+//     let keyUC = key.toUpperCase();
+//     let re = /[A-Z]/;
+//     let indexCurrent, indexKey, index;
+//     for (let i = 0, j = 0; i < str.length; i++) {
+//       if (re.test(strUC[i])) {
+//         if (j > keyUC.length - 1) {
+//           j = 0;
+//         }
+//         indexCurrent = this.ALPHABET.indexOf(strUC[i]);
+//         indexKey = this.ALPHABET.indexOf(keyUC[j]);
+//         index =
+//           indexCurrent + indexKey > 25
+//             ? indexCurrent + indexKey - 26
+//             : indexCurrent + indexKey;
+//         arr.push(this.ALPHABET[index]);
+//         j++;
+//       } else {
+//         arr.push(strUC[i]);
+//       }
+//     }
+//     return this.direct ? arr.join("") : arr.reverse().join("");
+//   }
+//   decrypt(encryptStr, key) {
+//     if (!encryptStr || !key) {
+//       throw new Error("Incorrect arguments!");
+//     }
+//     let arr = [];
+//     let strUC = encryptStr.toUpperCase().split("");
+//     let keyUC = key.toUpperCase();
+//     let re = /[A-Z]/;
+//     let indexCurrent, indexKey, index;
+//     for (let i = 0, j = 0; i < strUC.length; i++) {
+//       if (re.test(strUC[i])) {
+//         if (j > keyUC.length - 1) {
+//           j = 0;
+//         }
+//         indexCurrent = this.ALPHABET.indexOf(strUC[i]);
+//         indexKey = this.ALPHABET.indexOf(keyUC[j]);
+//         index =
+//           indexCurrent - indexKey < 0
+//             ? indexCurrent - indexKey + 26
+//             : indexCurrent - indexKey;
+//         arr.push(this.ALPHABET[index]);
+//         j++;
+//       } else {
+//         arr.push(encryptStr[i]);
+//       }
+//     }
+//     return this.direct ? arr.join("") : arr.reverse().join("");
+//   }
+// }
 module.exports = {
   VigenereCipheringMachine,
 };
